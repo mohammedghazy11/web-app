@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'main', url: 'https://github.com/mohammedghazy11/web-app.git'
                 sh "docker build -t elnabawy/my-web-app:${env.BUILD_ID} ."
                 withCredentials([usernamePassword(credentialsId: 'docker-cre', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh "docker login -u $USERNAME -p $PASSWORD"
